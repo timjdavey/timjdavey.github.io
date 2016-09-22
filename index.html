@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tim Davey</title>
+    <meta name="Description" content="Tim Davey">
+    <meta content="Tim Davey, startups, design, technology" name="keywords">
+<meta name="google-site-verification" content="w0BjS7Rbp57jP8QNeDQpQrCcBuIzVZ-HnGoeCDf3XRU" />
+    <style>
+        body {
+            background: #fff;
+            color: #333;
+            margin: 0;
+        }
+        a {
+            border-bottom: 1px solid #eee;
+            color: #000;
+            text-decoration: none;
+            padding: 0 4px;
+        }
+        a:hover {
+            background: #000;
+            border-color: #000;
+            color: #fff;
+        }
+        b {
+            font-weight: normal;
+        }
+        #outer {
+            border-top: 5px solid black;
+        }
+        #container {
+            padding: 0 30px 0;
+            margin: 0 auto;
+            text-align: center;
+            width: 500px;
+        }
+        h1 {
+            color: #222;
+            font: 60px 'Vollkorn', serif;
+            padding: 160px 0 20px;
+            margin: 0;
+        }
+        #quote {
+            color: #999;
+            cursor: pointer;
+            font: 16px 'Volkhov', serif;
+            font-style: italic;
+            padding: 0 0 20px;
+        }
+        #me {
+            border-top: 1px solid #eee;
+            color: #444;
+            font: 15px 'georgia', serif;
+            padding: 20px 0;
+            margin: 0;
+        }
+        #me p {
+            margin: 0;
+        }
+        #me .footnote {
+            color: #fff;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+#tumblr_controls {
+display:none }
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="outer">
+    <div id="container">
+        <h1>Mr Tim J. Davey</h1>
+        <div id="quote"></div>
+        <div id="me">
+            <p>
+            Co-founder <a href="http://www.onefinestay.com">onefinestay</a>
+            . Follow <a href="http://twitter.com/timjdavey">@timjdavey</a>
+            . Connect <a href="http://www.linkedin.com/in/timjdavey">linked.in</a>
+            </p>
+            <p class="footnote">
+                Startups, technology, design <b>&copy; Tim Davey</b>
+            </p>
+        </div>
+        
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    var $questions = [
+        "What if there were no hypothectical questions?",
+        "If Barbie is so popular, why do you have to buy her friends?",
+        "What was the best thing before sliced bread?"
+    ];
+    
+    var $graffiti = [
+        "Rock is dead... long live paper and scissors.",
+        "Honk, if you love peace and quiet!",
+        "Time is a great healer but a lousy beautician.",
+        "All things are possible, except skiing through a revolving door.",
+        "Telepath wanted. You know where to apply...",
+        "Jesus is coming, look busy."
+    ];
+    
+    var $jokes = [
+        "I've got a one armed butler. He can give it but can't take it.",
+    ];
+    
+    var $all = $questions.concat($graffiti).concat($jokes);
+    var $length = $all.length;
+    var $quote = $("#quote");
+    var $fin = 200;
+    var $fout = 100;
+    var $fwait = 6000;
+    var picker = function(){
+        var c = $all[Math.floor(Math.random()*$length)];
+        $quote.fadeOut($fout, function(){
+            $quote.html(c).fadeIn($fin);
+        });
+    }
+    $quote.click(picker);
+    setInterval(picker, $fin+$fout+$fwait);
+    picker();
+});
+</script>
+</body>
+</html>
