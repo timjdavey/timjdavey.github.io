@@ -1,129 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Tim Davey</title>
-    <meta name="Description" content="Tim Davey">
-    <meta content="Tim Davey, startups, design, technology" name="keywords">
-<meta name="google-site-verification" content="w0BjS7Rbp57jP8QNeDQpQrCcBuIzVZ-HnGoeCDf3XRU" />
-    <style>
-        body {
-            background: #fff;
-            color: #333;
-            margin: 0;
-        }
-        a {
-            border-bottom: 1px solid #eee;
-            color: #000;
-            text-decoration: none;
-            padding: 0 4px;
-        }
-        a:hover {
-            background: #000;
-            border-color: #000;
-            color: #fff;
-        }
-        b {
-            font-weight: normal;
-        }
-        #outer {
-            border-top: 5px solid black;
-        }
-        #container {
-            padding: 0 30px 0;
-            margin: 0 auto;
-            text-align: center;
-            width: 500px;
-        }
-        h1 {
-            color: #222;
-            font: 60px 'Vollkorn', serif;
-            padding: 160px 0 20px;
-            margin: 0;
-        }
-        #quote {
-            color: #999;
-            cursor: pointer;
-            font: 16px 'Volkhov', serif;
-            font-style: italic;
-            padding: 0 0 20px;
-        }
-        #me {
-            border-top: 1px solid #eee;
-            color: #444;
-            font: 15px 'georgia', serif;
-            padding: 20px 0;
-            margin: 0;
-        }
-        #me p {
-            margin: 0;
-        }
-        #me .footnote {
-            color: #fff;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-#tumblr_controls {
-display:none }
-    </style>
-    <link href='http://fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<div id="outer">
-    <div id="container">
-        <h1>Mr Tim J. Davey</h1>
-        <div id="quote"></div>
-        <div id="me">
-            <p>
-            Co-founder <a href="http://www.onefinestay.com">onefinestay</a>
-            . Follow <a href="http://twitter.com/timjdavey">@timjdavey</a>
-            . Connect <a href="http://www.linkedin.com/in/timjdavey">linked.in</a>
-            </p>
-            <p class="footnote">
-                Startups, technology, design <b>&copy; Tim Davey</b>
-            </p>
-        </div>
-        
-    </div>
-</div>
+<html lang="en" class="h-full">
+  <head>
+    <head>
+      <title>Tim J. Davey</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link href="https://cdn.disco.management/static/css/styles.css" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" defer />
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet" defer />
+    </head>
+  </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    var $questions = [
-        "What if there were no hypothectical questions?",
-        "If Barbie is so popular, why do you have to buy her friends?",
-        "What was the best thing before sliced bread?"
-    ];
-    
-    var $graffiti = [
-        "Rock is dead... long live paper and scissors.",
-        "Honk, if you love peace and quiet!",
-        "Time is a great healer but a lousy beautician.",
-        "All things are possible, except skiing through a revolving door.",
-        "Telepath wanted. You know where to apply...",
-        "Jesus is coming, look busy."
-    ];
-    
-    var $jokes = [
-        "I've got a one armed butler. He can give it but can't take it.",
-    ];
-    
-    var $all = $questions.concat($graffiti).concat($jokes);
-    var $length = $all.length;
-    var $quote = $("#quote");
-    var $fin = 200;
-    var $fout = 100;
-    var $fwait = 6000;
-    var picker = function(){
-        var c = $all[Math.floor(Math.random()*$length)];
-        $quote.fadeOut($fout, function(){
-            $quote.html(c).fadeIn($fin);
-        });
-    }
-    $quote.click(picker);
-    setInterval(picker, $fin+$fout+$fwait);
-    picker();
-});
-</script>
-</body>
+  <body class="h-full">
+    <div class="min-h-full max-w-3xl mx-auto py-28 px-5 leading-8 text-base text-gray-700">
+      <div class="mb-20 sm:mt-24 text-center">
+        <h2 class="mb-8 text-6xl sm:text-8xl tracking-tighter text-black font-serif">Tim J. Davey</h2>
+        <p class="py-2 text-zing text-xl mb-8">Serial founder, hands on investor and executive coach.</p>
+        <img src="https://cdn.disco.management/media/ref/36826177c8764fdc84104890ad599989/9e4bc270ddf0481a8de70de71eff29b7.jpg" class="mx-auto border-gray-100 border-8" />
+      </div>
+      <div class="mb-10 pb-10 border-b border-gray-200">
+        <h2 class="mb-3 text-4xl tracking-tigh font-serif">A brief history</h2>
+        <p class="py-2">Started my first business at the tender young age of 17, then was the youngest person accepted into YC, all the way back in 2008. We built a distributed hotel-chain called <a href="https://www.onefinestay.com" class="link">onefinestay</a> (think complex logistics business, mixed with super high-end brand). Scaled it across 4 countries, with six hundred people who loved working there. Eventually sold it for a few hundred million dollars.</p>
+        <p class="py-2">More recently I've helped build <a href="https://www.lis.ac.uk" class="link">London Interdisciplinary School</a>. <i class="italic">“The most radical new university to open in decades”</i> according to the Times. Where we prepare people for the perilously complex and uncertain future which consuming us alive (see below).</p>
+        <p class="py-2">Right now, I'm building <a href="https://www.disco.management" class="link">disco</a>, a platform which guides future leaders to find their style and voice. We teach soft-skills and practical frameworks, in a no-nonsense, yet empathetic way.</p>
+      </div>
+      <div class="mb-10 pb-10 border-b border-gray-200">
+        <h2 class="mb-3 text-4xl tracking-tight text-zing font-serif">Executive coach</h2>
+        <p class="py-2">Since 2018 I've had the privilege of supporting some extraordinary founders in creating genuine impact. I know how hard, lonely, infuriating, rewarding and exhilarating the journey is. It's a set of feelings you can only understand once you've actually lived it. And so, is why I do what I do. I'm here to give a shit about you and your life. I'm here to help <i class="italic">you</i> make the right decisions when they matter most.</p>
+        <p class="py-2">I do this by smashing together my practical hard earned experience as a founder, with the solid theoretical underpinnings from the decision and learning science developed at LIS and disco. I focus on high performance management, that's packed full of love and respect.</p>
+        <p class="py-2">Although much of my time is taken up by scaling this impact through disco, I really enjoy working with execs, so if you'd like to work together get in touch <span class="text-zing">tim[at]disco.management</span></p>
+        <p class="py-2">I also care deeply about the climate crisis (because, you know, I care about the survival of the planet), so I do pro-bono coaching for founders doing positive climate work. If that's you, definitely get in touch too!</p>
+      </div>
+      <div class="mb-10 pb-10 border-b border-gray-200">
+        <h2 class="mb-3 text-4xl font-serif tracking-tight text-teal">Complexity Research</h2>
+        <p class="py-2">When we started <a href="https://www.lis.ac.uk" class="link">LIS</a> back in 2018 we could see the world's biggest problems were <i class="italic">all</i> complex. So we outlined 4 complex challenges we knew students would have to answer in their lifetime, they were: vaccine rollouts in a pandemic, dealing with mass misinformation, supply chain breakdowns and when gene-drives get out of control. Two years later, the pandemic hit and we all lived through three of them.</p>
+        <p class="py-2">Complexity is the single most important topic we should be researching. It underpins the climate crisis, the rampantly raising global inequality, the fragility of all our major infrastructures. This is why I spend whatever left-over time I have doing fundamental research on new statistical techniques to help us quantify and navigate complex decisions.</p>
+      </div>
+      <div class="mb-10 pb-10">
+        <h2 class="mb-3 text-4xl font-serif tracking-tight">Talks and research</h2>
+        <p><span class="text-zing">tim[at]disco.management</span></p>
+        <p>When schedules allow, I do talks on all of the above; or, if you're interested in collaborating on some research, hit me up!</p>
+      </div>
+    </div>
+  </body>
 </html>
