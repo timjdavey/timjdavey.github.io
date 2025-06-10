@@ -1,67 +1,425 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
   <head>
-    <head>
-      <title>Tim J. Davey</title>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link href="https://discom.blob.core.windows.net/static/css/styles.css" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" defer />
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet" defer />
-    </head>
-  </head>
+    <title>Tim J. Davey</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        font-family: monospace;
+        padding-left: 2%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-right: 4%;
+        background-color: #111;
+        color: #eee;
+      }
+      main {
+        max-width: 600px;
+        border-left: 1px dashed #ddd;
+        padding-left: 2%;
+      }
+      pre {
+        font-size: 0.4rem;
+        padding-top: 3rem;
+        padding-bottom: 1rem;
+      }
+      a {
+        color: #aaa;
+      }
+      a:hover {
+        color: #fff;
+      }
+      p {
+        line-height: 2;
+        font-size: 0.9rem;
+        padding-bottom: 1rem;
+      }
+      #boids, #life {
+        position: relative;
+        height: 200px;
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      .boid {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #eee;
+        transform: translate(-50%, -50%);
+      }
+      .cell {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #eee;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <script>
+      // Track mouse position
+      let mouseX = 0;
+      let mouseY = 0;
+      document.addEventListener('mousemove', (e) => {
+        const rect = document.getElementById('boids').getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
 
-  <body class="h-full">
-        <div class="mx-auto text-center max-w-7xl px-6 lg:px-24">
-      <div class="mx-auto max-w-2xl">
-        <div class="py-8">
-          <p class="font-serif font-extralight text-4xl tracking-widest">TIM<span class="text-bee text-6xl">&middot;</span>J<span class="text-bee text-6xl">&middot;</span>DAVEY</p>
-        </div>
-      </div>
-    </div>
-    <div class="border-t border-gray-100 overflow-hidden py-12 sm:py-24 sm:pb-18 bg-gradient-to-b from-gray-50 to-white">
-      <div class="mx-auto max-w-7xl px-6 lg:px-24">
-        <div class="mx-auto grid grid-cols-1 sm:gap-x-20 gap-y-16 sm:gap-y-20 md:mx-0 md:max-w-none md:grid-cols-5">
-          <div class="col-span-2 sm:pt-12 items-center">
-            <img src="https://discom.blob.core.windows.net/media/ref/36826177c8764fdc84104890ad599989/9e4bc270ddf0481a8de70de71eff29b7.jpg" />
-          </div>
-          <div class="col-span-3 leading-7 text-gray-700 lg:max-w-none leading-7">
-            <p class="text-4xl font-serif sm:text-5x pb-4">A brief history</p>
-            <p class="py-2">
-              Rolling right back to the beginning, I started my first VC backed business at 19, where I was the youngest person accepted into <a href="https://www.ycombinator.com" class="link">YC</a> (2008). We then built a distributed hotel-chain called <a href="https://www.onefinestay.com" class="link">onefinestay</a> (think complex logistics business, mixed with super high-end brand). We scaled it across 4 countries, until we eventually we sold it for a few hundred million dollars.
-            </p>
-            <p class="py-2">More recently I've helped build the <a href="https://www.lis.ac.uk" class="link">London Interdisciplinary School</a>. Which has been dubbed <i class="italic">“The most radical new university to open in decades”</i> by the Times. Here we prepare people by integrating knowledge from across disciplines, because our messy world doesn't seem to respect arbitrary academic silos.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto max-w-7xl px-6 lg:px-24 leading-7">
-      <div class="border-t-2 border-gray-100 mb-10 pb-10 pt-20 text-gray-700 grid grid-cols-1 sm:grid-cols-5 sm:gap-x-20">
-        <div class="col-span-3 mb-5">
-          <h2 class="text-4xl font-serif mb-4">Executive coach</h2>
-          <p class="py-2">Since 2018 I've had the chance to support some extraordinary founders. I know how hard, lonely, infuriating, rewarding, exhilarating... the journey is. It's quite the cocktail of feelings you can only understand once you've actually tasted it.</p>
-          <p class="py-2">I bring together practical experience as a founder, with the theory developed at LIS. Bringing together frameworks, andedotes and just be someone who will listen.</p>
-        </div>
-        <div class="col-span-2">
-          <h2 class="text-4xl font-serif text-grey-700 mb-4">Work together</h2>
-          <p class="py-2">Although much of my time is taken up with research, I love working with passionate people, who give a shit. So get in touch and we can set up a free call to see if we're a good fit.</p>
-          <p class="py-2">Pro-bono: Also like any human should, I care deeply about the climate crisis. So if you're a founder doing positive climate work, I'd love to help you for free and likely invest.</p>
-        </div>
-      </div>
-      <div class="mb-10 pb-40 border-t-2 pt-20 border-gray-200 text-gray-700 grid grid-cols-1 sm:grid-cols-5 sm:gap-x-20">
-        <div class="col-span-3 mb-10">
-          <h2 class="text-4xl font-serif mb-4">Complexity Research</h2>
-          <p class="py-2">When we started <a href="https://www.lis.ac.uk" class="link">LIS</a> back in 2018 we outlined 4 complex challenges we knew students would have to answer in their lifetimes. They were: vaccine rollouts in a pandemic, dealing with mass misinformation, supply chain breakdowns and what to do when gene-drives get out of control. Ironic that 3 of these engulfed the world before we'd even got through the regulation process.</p>
-          <p class="py-2">The climate crisis, the rampantly rising global inequality, the fragility of all our major infrastructures... all the world's most biggest problems are so called "complex". They're "non-linear and ergodic", meaning they can't be broken down into neat little chunks, so can't be solved in insolation or by arbitrary disciplines. This is why LIS had to be Interdisciplinary, to join those dots and tackle the problems holistically.</p>
-          <p class="py-2">Complexity Science is the single most important topic we should be researching. So I spend whatever extra time I have doing fundamental research on new statistical techniques to help us quantify and navigate complex decisions. Then translating them into techniques which can be used by leaders to make real positive change.</p>
-        </div>
-        <div class="col-span-2">
-          <h2 class="text-4xl font-serif text-grey-700 mb-4">Collaborate and talks</h2>
-          <p class="py-2">I've taught systems design, data science and entreprenuership at LIS and Imperial. I've also done talks on this research at various organisations.</p>
-          <p class="py-2">If you'd like me to do a talk at your organisation or would like to collaborate on a paper, then please hit me up.</p>
-        </div>
-      </div>
-    </div>
+      class Boid {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.vx = (Math.random() - 0.5) * 2;
+          this.vy = (Math.random() - 0.5) * 2;
+          this.element = document.createElement('div');
+          this.element.className = 'boid';
+          document.getElementById('boids').appendChild(this.element);
+        }
+
+        update(boids) {
+          // Separation
+          let sepX = 0, sepY = 0;
+          // Alignment
+          let alignX = 0, alignY = 0;
+          // Cohesion
+          let cohX = 0, cohY = 0;
+          let neighbors = 0;
+
+          // Cursor attraction
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const distToCursor = Math.sqrt(dx * dx + dy * dy);
+          if (distToCursor < 200) {
+            const force = 1.0 * (1 - distToCursor / 200);
+            sepX += (dx / distToCursor) * force;
+            sepY += (dy / distToCursor) * force;
+          }
+
+          boids.forEach(other => {
+            if (other === this) return;
+            
+            const dx = other.x - this.x;
+            const dy = other.y - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 20) {
+              // Separation
+              sepX -= dx / dist;
+              sepY -= dy / dist;
+              
+              // Alignment
+              alignX += other.vx;
+              alignY += other.vy;
+              
+              // Cohesion
+              cohX += other.x;
+              cohY += other.y;
+              
+              neighbors++;
+            }
+          });
+
+          if (neighbors > 0) {
+            // Apply separation
+            this.vx += sepX * 0.05;
+            this.vy += sepY * 0.05;
+            
+            // Apply alignment
+            this.vx += (alignX / neighbors - this.vx) * 0.05;
+            this.vy += (alignY / neighbors - this.vy) * 0.05;
+            
+            // Apply cohesion
+            cohX /= neighbors;
+            cohY /= neighbors;
+            this.vx += (cohX - this.x) * 0.01;
+            this.vy += (cohY - this.y) * 0.01;
+          }
+
+          // Speed limit
+          const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+          if (speed > 2) {
+            this.vx = (this.vx / speed) * 2;
+            this.vy = (this.vy / speed) * 2;
+          }
+
+          // Update position
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Wrap around edges
+          const container = document.getElementById('boids');
+          if (this.x < 0) this.x = container.offsetWidth;
+          if (this.x > container.offsetWidth) this.x = 0;
+          if (this.y < 0) this.y = container.offsetHeight;
+          if (this.y > container.offsetHeight) this.y = 0;
+
+          // Update element position
+          this.element.style.left = this.x + 'px';
+          this.element.style.top = this.y + 'px';
+        }
+      }
+
+      // Conway's Game of Life
+      class GameOfLife {
+        constructor(container) {
+          this.container = container;
+          this.width = Math.floor(container.offsetWidth / 4);
+          this.height = Math.floor(container.offsetHeight / 4);
+          this.grid = new Array(this.width * this.height).fill(0);
+          this.cells = new Map();
+          
+          // Initialize with more dynamic patterns
+          // Create some random "gliders" and "blinkers"
+          for (let i = 0; i < 20; i++) {
+            const x = Math.floor(Math.random() * (this.width - 3));
+            const y = Math.floor(Math.random() * (this.height - 3));
+            
+            // Randomly choose between glider and blinker
+            if (Math.random() < 0.5) {
+              // Create a glider
+              const glider = [
+                [0,1,0],
+                [0,0,1],
+                [1,1,1]
+              ];
+              for (let dy = 0; dy < 3; dy++) {
+                for (let dx = 0; dx < 3; dx++) {
+                  if (glider[dy][dx]) {
+                    const nx = (x + dx) % this.width;
+                    const ny = (y + dy) % this.height;
+                    this.grid[ny * this.width + nx] = 1;
+                    this.createCell(nx, ny);
+                  }
+                }
+              }
+            } else {
+              // Create a blinker
+              const blinker = [
+                [1],
+                [1],
+                [1]
+              ];
+              for (let dy = 0; dy < 3; dy++) {
+                const nx = x;
+                const ny = (y + dy) % this.height;
+                this.grid[ny * this.width + nx] = 1;
+                this.createCell(nx, ny);
+              }
+            }
+          }
+
+          // Add some random cells
+          for (let i = 0; i < this.width * this.height; i++) {
+            if (Math.random() < 0.1) {
+              this.grid[i] = 1;
+              this.createCell(i % this.width, Math.floor(i / this.width));
+            }
+          }
+
+          // Add mouse interaction
+          this.container.addEventListener('mousemove', (e) => {
+            const rect = this.container.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) / 4);
+            const y = Math.floor((e.clientY - rect.top) / 4);
+            
+            // Kill cell under cursor
+            const idx = y * this.width + x;
+            if (this.grid[idx]) {
+              this.grid[idx] = 0;
+              this.removeCell(x, y);
+            }
+          });
+
+          // Set up timer for periodic random cell addition
+          setInterval(() => this.addRandomCells(), 2000);
+        }
+
+        createCell(x, y) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.style.left = (x * 4 + 2) + 'px';
+          cell.style.top = (y * 4 + 2) + 'px';
+          this.container.appendChild(cell);
+          this.cells.set(`${x},${y}`, cell);
+        }
+
+        removeCell(x, y) {
+          const cell = this.cells.get(`${x},${y}`);
+          if (cell) {
+            cell.remove();
+            this.cells.delete(`${x},${y}`);
+          }
+        }
+
+        getNeighbors(x, y) {
+          let count = 0;
+          for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              if (dx === 0 && dy === 0) continue;
+              const nx = (x + dx + this.width) % this.width;
+              const ny = (y + dy + this.height) % this.height;
+              count += this.grid[ny * this.width + nx];
+            }
+          }
+          return count;
+        }
+
+        update() {
+          const newGrid = new Array(this.width * this.height).fill(0);
+          const cellsToCreate = new Set();
+          const cellsToRemove = new Set();
+
+          for (let y = 0; y < this.height; y++) {
+            for (let x = 0; x < this.width; x++) {
+              const idx = y * this.width + x;
+              const neighbors = this.getNeighbors(x, y);
+              const isAlive = this.grid[idx];
+
+              // Modified rules for more dynamic behavior:
+              // 1. Standard survival: 2-3 neighbors
+              // 2. Birth: 3 neighbors (standard) OR 6 neighbors (new rule)
+              // 3. Death: all other cases
+              if (isAlive && (neighbors === 2 || neighbors === 3)) {
+                newGrid[idx] = 1;
+              } else if (!isAlive && (neighbors === 3 || neighbors === 6)) {
+                newGrid[idx] = 1;
+                cellsToCreate.add(`${x},${y}`);
+              } else if (isAlive) {
+                cellsToRemove.add(`${x},${y}`);
+              }
+            }
+          }
+
+          // Update cells
+          cellsToCreate.forEach(pos => {
+            const [x, y] = pos.split(',').map(Number);
+            this.createCell(x, y);
+          });
+
+          cellsToRemove.forEach(pos => {
+            const [x, y] = pos.split(',').map(Number);
+            this.removeCell(x, y);
+          });
+
+          this.grid = newGrid;
+        }
+
+        addRandomCells() {
+          // Add a cluster of random cells in a random area
+          const centerX = Math.floor(Math.random() * this.width);
+          const centerY = Math.floor(Math.random() * this.height);
+          const radius = 5; // Size of the cluster
+          
+          for (let dy = -radius; dy <= radius; dy++) {
+            for (let dx = -radius; dx <= radius; dx++) {
+              // Only add cells within a circular area
+              if (dx * dx + dy * dy <= radius * radius) {
+                const x = (centerX + dx + this.width) % this.width;
+                const y = (centerY + dy + this.height) % this.height;
+                
+                // 30% chance to add a cell in this position
+                if (Math.random() < 0.3) {
+                  const idx = y * this.width + x;
+                  if (!this.grid[idx]) {  // Only add if the cell is empty
+                    this.grid[idx] = 1;
+                    this.createCell(x, y);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Initialize boids after DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize boids
+        const boids = [];
+        const container = document.getElementById('boids');
+        for (let i = 0; i < 100; i++) {
+          boids.push(new Boid(
+            Math.random() * container.offsetWidth,
+            Math.random() * container.offsetHeight
+          ));
+        }
+
+        // Initialize Game of Life
+        const lifeContainer = document.getElementById('life');
+        const gameOfLife = new GameOfLife(lifeContainer);
+
+        // Animation loop
+        function animate() {
+          boids.forEach(boid => boid.update(boids));
+          gameOfLife.update();
+          requestAnimationFrame(animate);
+        }
+        animate();
+      });
+    </script>
+
+    
+  </head>
+  <body>
+
+<main>
+
+<pre style="padding-top: 0;">
+                 █████                                          ███ 
+                ░░███                                          ░░░  
+ █████ ███ █████ ░███████    ██████   ██████   █████████████   ████ 
+░░███ ░███░░███  ░███░░███  ███░░███ ░░░░░███ ░░███░░███░░███ ░░███ 
+ ░███ ░███ ░███  ░███ ░███ ░███ ░███  ███████  ░███ ░███ ░███  ░███ 
+ ░░███████████   ░███ ░███ ░███ ░███ ███░░███  ░███ ░███ ░███  ░███ 
+  ░░████░████    ████ █████░░██████ ░░████████ █████░███ █████ █████
+   ░░░░ ░░░░    ░░░░ ░░░░░  ░░░░░░   ░░░░░░░░ ░░░░░ ░░░ ░░░░░ ░░░░░ 
+</pre>
+
+<p>My name is Tim. I like to build and learn new things.<br/>
+Some companies I've made:</p>
+
+<p>- <a href="https://www.lis.ac.uk">London Interdisciplinary School</a> (2018) "The most radical new university to open in decades" the Times. 
+We founded it on two key principles: First, the world is becoming more complex and interconnected. Second, specialisation in the workforce is becoming automated fast. Both of which mean we need more people who can tie together knowledge from <i>across</i> very different fields.<br />
+Of course at first nobody got it, who needs more generalists? Then just one year after launching covid hit, demonstrating how brittle and interwoved our global system is. Then a year after that, LLMs were born, demonstrating quickly how higher level thinkers will be the ones crafting the future.</p>
+<p>- onefinestay (2009) was the largest distributed hotel in the world. It was messy and complex to scale, but a lot of fun. The team was amazing and have gone on to create many more successful companies. We ended up selling for a healthy nine figure sum.</p>
+<p>- snaptalent (2007) came out of one of the first ever YC batches. I was only 19 (so was also one of the youngest YC founders) and what blows my mind is in hindsight how many wonderful people were in those rooms.</p>
+
+<section id="boids"></section>
+
+
+<pre>
+                                                                  █████     
+                                                                 ░░███      
+ ████████   ██████   █████   ██████   ██████   ████████   ██████  ░███████  
+░░███░░███ ███░░███ ███░░   ███░░███ ░░░░░███ ░░███░░███ ███░░███ ░███░░███ 
+ ░███ ░░░ ░███████ ░░█████ ░███████   ███████  ░███ ░░░ ░███ ░░░  ░███ ░███ 
+ ░███     ░███░░░   ░░░░███░███░░░   ███░░███  ░███     ░███  ███ ░███ ░███ 
+ █████    ░░██████  ██████ ░░██████ ░░████████ █████    ░░██████  ████ █████
+░░░░░      ░░░░░░  ░░░░░░   ░░░░░░   ░░░░░░░░ ░░░░░      ░░░░░░  ░░░░ ░░░░░ 
+</pre>
+
+<p>It's thought that Stonehenge took over 1500 years to construct. The hunt for the prime algorithm has been going for at least 2000. You don't always have to see the fruits of your labour to find peace and satisfaction in planting the seed. I find great purpose with doing science, not for publications, awards or money - just so that I know I've added one small brick to the collective temple of wisdom.</p>
+<p>My most recent area of research has been <a href="https://pubmed.ncbi.nlm.nih.gov/39202153/">complexity</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/38136485/">self-organisation</a> (these are a key tenent of the new university). The papers outlined quantitive and practical definitions for both these intuitive and innate ideas. This is so we can better work with toy systems like boids (above), game of life (below), but also more importantly nature, society and climate...</p>
+
+
+<section id="life"></section>
+
+<pre>
+          ████   ███                             █████            
+         ░░███  ░░░                             ░░███             
+  ██████  ░███  ████  █████████████    ██████   ███████    ██████ 
+ ███░░███ ░███ ░░███ ░░███░░███░░███  ░░░░░███ ░░░███░    ███░░███
+░███ ░░░  ░███  ░███  ░███ ░███ ░███   ███████   ░███    ░███████ 
+░███  ███ ░███  ░███  ░███ ░███ ░███  ███░░███   ░███ ███░███░░░  
+░░██████  █████ █████ █████░███ █████░░████████  ░░█████ ░░██████ 
+ ░░░░░░  ░░░░░ ░░░░░ ░░░░░ ░░░ ░░░░░  ░░░░░░░░    ░░░░░   ░░░░░░  
+</pre>
+
+<p>I'm beyond proud of my wife who worked alongside Prince Harry to build <a href="https://travalyst.org/about/">Travalyst</a>. The team got all the biggest names in travel (Google, Booking, CTrip, Visa etc...) to work together to help travellers make better choices.</p>
+<p>The immediate carbon impact they've had is already enormous. But for me their real impact is proving that you can get (fierce competitive) giants to work together. We have all the tools we need to fix the climate and society, we just need to agree to use them.</p>
+<p>We invest in and advise climate startups. So reach out if there's anything we can do to support.</p>
+</main>
   </body>
 </html>
